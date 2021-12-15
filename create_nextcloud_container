@@ -1,0 +1,27 @@
+#! /bin/bash
+
+#Hier kijken we of sudo gebruikt wordt
+if [ ! $(sudo echo 0) ]; then
+        echo "Sudo needs to be used!"
+        exit 1
+fi
+
+#hier wordt gecontroleerd of er een variabele meegegeven wordt, dit moet namelijk
+if [ $# -ne 1 ]; then
+    echo "You need to provide the file with your variables in for us to be able to create the docker container"
+    exit 1
+fi
+
+configfile=$1
+source $configfile
+
+sudo docker run -d \
+  --name=$NAME \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=$TIMEZONE  \
+  -p $EXTERNALPORT:$INTERNALPORT \
+  -v $APPDATA:$CONFIG \
+  -v $APPDATAFILES:$DATA \
+  --restart unless-stopped \
+  ghcr.io/linuxserver/nextcloud
