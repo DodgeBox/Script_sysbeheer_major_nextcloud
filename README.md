@@ -7,3 +7,5 @@ Je moet zelf een file aanmaken met daarin je eigen gekozen parameters voor je co
 Je execute het script door ./create_nextcloud_container en dan als argument het path mee te geven van waar je file staat met je eigen variabelen.
 
 In de github staat ook een eigen aangemaakte file die je als voorbeeld kan gebruiken voor hoe de variabelen gedefinieerd moeten worden in dit extern bestand.
+
+voorbeeld van commando is dan ./create_nextcloud_container /path/to/file
